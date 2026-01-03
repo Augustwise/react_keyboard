@@ -1,12 +1,12 @@
 import React from 'react';
 
 interface PressedKey {
-  lastKey: string;
+  pressedKey: string;
 }
 
 export class App extends React.Component<{}, PressedKey> {
   state: PressedKey = {
-    lastKey: '',
+    pressedKey: '',
   };
 
   componentDidMount() {
@@ -19,22 +19,22 @@ export class App extends React.Component<{}, PressedKey> {
 
   shouldComponentUpdate(_nextProps: {}, nextState: PressedKey) {
     // Only re-render if key change
-    return nextState.lastKey !== this.state.lastKey;
+    return nextState.pressedKey !== this.state.pressedKey;
   }
 
   handleKeyUp = (event: KeyboardEvent) => {
     this.setState({
-      lastKey: event.key,
+      pressedKey: event.key,
     });
   };
 
   render() {
-    const { lastKey } = this.state;
+    const { pressedKey } = this.state;
 
     return (
       <div className="App">
-        {lastKey ? (
-          <p className="App__message">The last pressed key is [{lastKey}]</p>
+        {pressedKey ? (
+          <p className="App__message">The last pressed key is [{pressedKey}]</p>
         ) : (
           <p className="App__message">Nothing was pressed yet</p>
         )}
