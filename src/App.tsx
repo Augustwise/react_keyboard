@@ -1,23 +1,23 @@
 import React from 'react';
 
-interface State {
+interface PressedKey {
   lastKey: string;
 }
 
-export class App extends React.Component<{}, State> {
-  state: State = {
+export class App extends React.Component<{}, PressedKey> {
+  state: PressedKey = {
     lastKey: '',
   };
 
   componentDidMount() {
-    window.addEventListener('keyup', this.handleKeyUp);
+    document.addEventListener('keyup', this.handleKeyUp);
   }
 
   componentWillUnmount() {
-    window.removeEventListener('keyup', this.handleKeyUp);
+    document.removeEventListener('keyup', this.handleKeyUp);
   }
 
-  shouldComponentUpdate(_nextProps: {}, nextState: State) {
+  shouldComponentUpdate(_nextProps: {}, nextState: PressedKey) {
     // Only re-render if key change
     return nextState.lastKey !== this.state.lastKey;
   }
